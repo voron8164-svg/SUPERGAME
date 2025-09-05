@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система лояльности</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #1a001a; /* Темно-фиолетовый */
+            color: #f0f0f0;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Треугольники на заднем фоне */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, #2d002d 25%, transparent 25%, transparent 75%, #2d002d 75%, #2d002d),
+                linear-gradient(45deg, #2d002d 25%, transparent 25%, transparent 75%, #2d002d 75%, #2d002d);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #c273ff; /* Светло-фиолетовый */
+            text-shadow: 0 0 10px rgba(194, 115, 255, 0.7);
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            color: #d9a1ff;
+            border-bottom: 2px solid #8c2bce;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        .card-system {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #2a002a, #3d003d);
+            border: 1px solid #8c2bce;
+            border-radius: 10px;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 0 15px rgba(140, 43, 206, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(140, 43, 206, 0.7);
+        }
+
+        .card h3 {
+            color: #f0f0f0;
+            border-bottom: 1px solid #8c2bce;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .card p {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        .bronze { border-left: 5px solid #cd7f32; }
+        .silver { border-left: 5px solid #c0c0c0; }
+        .gold { border-left: 5px solid #ffd700; }
+        .diamond { border-left: 5px solid #b9f2ff; }
+        .platinum { border-left: 5px solid #e5e4e2; }
+
+        .game-rules {
+            background: rgba(44, 0, 44, 0.7);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 40px 0;
+            border: 1px solid #8c2bce;
+            box-shadow: 0 0 15px rgba(140, 43, 206, 0.4);
+        }
+
+        .rule {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(61, 0, 61, 0.5);
+            border-radius: 8px;
+            border-left: 4px solid #8c2bce;
+        }
+
+        .rule h4 {
+            margin: 0 0 10px 0;
+            color: #d9a1ff;
+        }
+
+        .dice {
+            display: inline-block;
+            background: #8c2bce;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 0 3px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #c273ff;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>СИСТЕМА ЛОЯЛЬНОСТИ</h1>
+        </header>
+
+        <section class="card-system">
+            <div class="card bronze">
+                <h3>Бронзовая карта</h3>
+                <p><strong>3+ посещения</strong></p>
+                <p>Возможность играть в супер-игру, кубик <span class="dice">D12</span></p>
+                <p>Выдается сразу после 3 приходов и навсегда</p>
+            </div>
+
+            <div class="card silver">
+                <h3>Серебряная карта</h3>
+                <p><strong>5+ посещений</strong></p>
+                <p>Скидка 3% + кубик для супер-игры <span class="dice">D20</span></p>
+                <p>Выдается до конца месяца</p>
+            </div>
+
+            <div class="card gold">
+                <h3>Золотая карта</h3>
+                <p><strong>10+ посещений</strong></p>
+                <p>Скидка 10%</p>
+                <p>Выдается в начале следующего месяца и до конца того же месяца</p>
+            </div>
+
+            <div class="card diamond">
+                <h3>Алмазная карта</h3>
+                <p><strong>15+ посещений</strong></p>
+                <p>Скидка 15%</p>
+                <p>Выдается в начале следующего месяца и до конца того же месяца</p>
+            </div>
+
+            <div class="card platinum">
+                <h3>Платиновая карта</h3>
+                <p><strong>20+ посещений</strong></p>
+                <p>Скидка 20%</p>
+                <p>Выдается в начале следующего месяца и до конца того же месяца</p>
+            </div>
+        </section>
+
+        <section class="game-rules">
+            <h2>Правила игры в супер-игру</h2>
+            
+            <div class="rule">
+                <h4>1) КРИТИЧЕСКИЙ УСПЕХ! (Critical Hit <span class="dice">D20</span>)</h4>
+                <p>Бесплатный Кальян на след визит.</p>
+            </div>
+            
+            <div class="rule">
+                <h4>2) Мана-пот (Mana Potion <span class="dice">D18-19</span>)</h4>
+                <p>Скидка 30% на ВСЕ напитки на следующее посещение.</p>
+            </div>
+            
+            <div class="rule">
+                <h4>3) Бафф союзника (Ally Buff <span class="dice">D13-15</span>)</h4>
+                <p>Дарим вам подарочный купон на 3 часа игры для друга на следующий визит.</p>
+            </div>
+            
+            <div class="rule">
+                <h4>4) Прокачка навыка (Skill Upgrade <span class="dice">D12</span>)</h4>
+                <p>Чай В ПОДАРОК.</p>
+            </div>
+            
+            <div class="rule">
+                <h4>5) Случайный квест (Random Quest <span class="dice">D2-11</span>)</h4>
+                <p>Испытайте удачу! Орёл или Решка? Подбрасывается монетка. На орла — скидка 5%, на решку — Конфетка.</p>
+            </div>
+            
+            <div class="rule">
+                <h4>6) Game Over... или нет? <span class="dice">D1</span></h4>
+                <p>В следующий раз! В этот раз ничего не выпало.</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2023 Система лояльности. Все права защищены.</p>
+        </footer>
+    </div>
+</body>
+</html>
