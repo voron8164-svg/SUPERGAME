@@ -5,15 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Система лояльности</title>
     <style>
+        :root {
+            --main-bg: #1a001a;
+            --card-bg: linear-gradient(145deg, #2a002a, #3d003d);
+            --accent-color: #8c2bce;
+            --light-accent: #c273ff;
+            --text-color: #f0f0f0;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #1a001a; /* Темно-фиолетовый */
-            color: #f0f0f0;
+            background-color: var(--main-bg);
+            color: var(--text-color);
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            font-size: 16px;
+            line-height: 1.5;
         }
 
         /* Треугольники на заднем фоне */
@@ -36,63 +50,66 @@
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
         }
 
         header {
             text-align: center;
-            padding: 30px 0;
-            margin-bottom: 40px;
+            padding: 20px 0;
+            margin-bottom: 30px;
         }
 
         h1 {
-            font-size: 3.5rem;
-            color: #c273ff; /* Светло-фиолетовый */
+            font-size: 2.2rem;
+            color: var(--light-accent);
             text-shadow: 0 0 10px rgba(194, 115, 255, 0.7);
             margin: 0;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            line-height: 1.2;
         }
 
         h2 {
             color: #d9a1ff;
-            border-bottom: 2px solid #8c2bce;
+            border-bottom: 2px solid var(--accent-color);
             padding-bottom: 10px;
-            margin-top: 40px;
+            margin-top: 30px;
+            font-size: 1.6rem;
         }
 
         .card-system {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin: 40px 0;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px 0;
         }
 
         .card {
-            background: linear-gradient(145deg, #2a002a, #3d003d);
-            border: 1px solid #8c2bce;
+            background: var(--card-bg);
+            border: 1px solid var(--accent-color);
             border-radius: 10px;
-            padding: 20px;
-            width: 250px;
+            padding: 15px;
+            width: 100%;
             box-shadow: 0 0 15px rgba(140, 43, 206, 0.4);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 0 20px rgba(140, 43, 206, 0.7);
         }
 
         .card h3 {
-            color: #f0f0f0;
-            border-bottom: 1px solid #8c2bce;
-            padding-bottom: 10px;
+            color: var(--text-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 8px;
             margin-top: 0;
+            font-size: 1.3rem;
         }
 
         .card p {
-            margin: 10px 0;
-            line-height: 1.5;
+            margin: 8px 0;
+            line-height: 1.4;
+            font-size: 0.95rem;
         }
 
         .bronze { border-left: 5px solid #cd7f32; }
@@ -104,41 +121,110 @@
         .game-rules {
             background: rgba(44, 0, 44, 0.7);
             border-radius: 10px;
-            padding: 25px;
-            margin: 40px 0;
-            border: 1px solid #8c2bce;
+            padding: 20px 15px;
+            margin: 30px 0;
+            border: 1px solid var(--accent-color);
             box-shadow: 0 0 15px rgba(140, 43, 206, 0.4);
         }
 
         .rule {
-            margin: 20px 0;
-            padding: 15px;
+            margin: 15px 0;
+            padding: 12px;
             background: rgba(61, 0, 61, 0.5);
             border-radius: 8px;
-            border-left: 4px solid #8c2bce;
+            border-left: 4px solid var(--accent-color);
         }
 
         .rule h4 {
-            margin: 0 0 10px 0;
+            margin: 0 0 8px 0;
             color: #d9a1ff;
+            font-size: 1.1rem;
+        }
+
+        .rule p {
+            margin: 5px 0;
+            font-size: 0.95rem;
         }
 
         .dice {
             display: inline-block;
-            background: #8c2bce;
+            background: var(--accent-color);
             color: white;
             padding: 2px 8px;
             border-radius: 4px;
             font-weight: bold;
             margin: 0 3px;
+            font-size: 0.9rem;
         }
 
         footer {
             text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            color: #c273ff;
+            margin-top: 40px;
+            padding: 15px;
+            color: var(--light-accent);
+            font-size: 0.85rem;
+        }
+
+        /* Навигация для быстрого перехода */
+        .quick-nav {
+            position: sticky;
+            top: 10px;
+            background: rgba(44, 0, 44, 0.9);
+            border-radius: 8px;
+            padding: 10px;
+            margin: 15px 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 5px;
+            border: 1px solid var(--accent-color);
+        }
+
+        .quick-nav a {
+            color: var(--light-accent);
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background: rgba(61, 0, 61, 0.5);
             font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .quick-nav a:hover {
+            background: rgba(140, 43, 206, 0.5);
+        }
+
+        /* Адаптивность для планшетов и больших телефонов */
+        @media (min-width: 576px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .card-system {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .quick-nav {
+                flex-wrap: nowrap;
+            }
+        }
+
+        /* Адаптивность для десктопов */
+        @media (min-width: 992px) {
+            .card-system {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            h1 {
+                font-size: 3.5rem;
+            }
         }
     </style>
 </head>
@@ -148,7 +234,13 @@
             <h1>СИСТЕМА ЛОЯЛЬНОСТИ</h1>
         </header>
 
-        <section class="card-system">
+        <!-- Быстрая навигация -->
+        <div class="quick-nav">
+            <a href="#cards">Карты</a>
+            <a href="#rules">Правила игры</a>
+        </div>
+
+        <section id="cards" class="card-system">
             <div class="card bronze">
                 <h3>Бронзовая карта</h3>
                 <p><strong>3+ посещения</strong></p>
@@ -185,8 +277,8 @@
             </div>
         </section>
 
-        <section class="game-rules">
-            <h2>Правила игры в супер-игру</h2>
+        <section id="rules" class="game-rules">
+            <h2>Правила супер-игры</h2>
             
             <div class="rule">
                 <h4>1) КРИТИЧЕСКИЙ УСПЕХ! (Critical Hit <span class="dice">D20</span>)</h4>
@@ -219,9 +311,10 @@
             </div>
         </section>
 
-        <footer>
-            <p>© 2023 Система лояльности. Все права защищены.</p>
-        </footer>
     </div>
+    
+    <footer>
+        © Система лояльности. Все права защищены.
+    </footer>
 </body>
 </html>
